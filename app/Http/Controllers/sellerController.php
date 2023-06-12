@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\Models\toko;
 use App\Models\produk;
 use App\Models\ulasan;
+use App\Models\visitor;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -64,16 +66,16 @@ class sellerController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'fotobg' => ['nullable', 'image', 'mimes:jpeg,jpg,gif', 'max:2048'],
-                'fotoprovil' => ['nullable', 'image', 'mimes:jpeg,ico,jpg,gif', 'max:2048'],
+                'fotobg' => ['nullable', 'image', 'mimes:jpeg,jpg,gif', 'max:5048'],
+                'fotoprovil' => ['nullable', 'image', 'mimes:jpeg,ico,jpg,gif', 'max:5048'],
             ],
             [
                 'fotoprovil.image' => 'Foto profil harus berupa gambar.',
                 'fotoprovil.mimes' => 'Format foto profil harus jpeg, ico, jpg, atau gif.',
-                'fotoprovil.max' => 'Ukuran foto profil maksimum adalah 2048 KB.',
+                'fotoprovil.max' => 'Ukuran foto profil maksimum adalah 5048 KB.',
                 'fotobg.image' => 'Foto latar belakang harus berupa gambar.',
                 'fotobg.mimes' => 'Format foto latar belakang harus jpeg, jpg, atau gif.',
-                'fotobg.max' => 'Ukuran foto latar belakang maksimum adalah 2048 KB.',
+                'fotobg.max' => 'Ukuran foto latar belakang maksimum adalah 5048 KB.',
             ]
         );
         // inputkan gambar provil
@@ -120,8 +122,7 @@ class sellerController extends Controller
         $request->session()->flash('success', 'Profil berhasil diperbarui.');
         return redirect('seller/profil');
     }
-
-
+    
     public function produk()
     {
         $userId = Auth::id();
@@ -179,13 +180,122 @@ class sellerController extends Controller
     {
         $userId = Auth::id();
         $toko = toko::where('idtoko', $userId)->first();
-        return view('seller/views', ['toko' => $toko]);
+        $namatoko = str_replace(' ', '%20', $toko->namatoko);
+
+        // Mendapatkan tanggal 7 hari yang lalu
+        $startDate = Carbon::now()->subDays(7)->startOfDay();
+
+        // Menyimpan data nama hari;
+        $hari = ["Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu", "Minggu"];
+
+        // Mendapatkan tanggal hari ini
+        $endDate = Carbon::now()->endOfDay();
+
+        // Mengambil data pengunjung laman 'kedainenek' dalam rentang waktu
+        $visitors = visitor::where('page', $namatoko)
+            ->whereBetween('date', [$startDate, $endDate])
+            ->orderBy('date')
+            ->get();
+        $faqVisitors = visitor::where('page', 'faq/' . $namatoko)
+            ->whereBetween('date', [$startDate, $endDate])
+            ->orderBy('date')
+            ->get();
+
+        // Mengambil jumlah total visits dan visitor
+        $totalVisits = Visitor::where('page', $namatoko)->sum('visits');
+        $totalVisitors = Visitor::where('page', $namatoko)->sum('visitor');
+        $totalVisitsFaq = Visitor::where('page', 'faq/' . $namatoko)->sum('visits');
+        $totalVisitorsFaq = Visitor::where('page', 'faq/' . $namatoko)->sum('visitor');
+
+        // Membuat array kosong untuk menyimpan data pengunjung dan hari-hari
+        $visitorData = [];
+        $visitData = [];
+        $visitorFaqData = [];
+        $visitFaqData = [];
+        $daysOfWeek = [];
+        $daysOfWeekFaq = [];
+
+        // Memasukkan data pengunjung ke dalam array $visitorData dan hari-hari ke dalam array $daysOfWeek
+        foreach ($visitors as $visitor) {
+            $visitorData[] = $visitor->visitor;
+            $visitData[] = $visitor->visits;
+            $daysOfWeek[] = $hari[Carbon::parse($visitor->date)->format('N') - 1];
+        }
+        foreach ($faqVisitors as $visitor) {
+            $visitorFaqData[] = $visitor->visitor;
+            $visitFaqData[] = $visitor->visits;
+            $daysOfWeekFaq[] = $hari[Carbon::parse($visitor->date)->format('N') - 1];
+        }
+
+        // Mengisi nilai default 0 jika data pengunjung tidak mencukupi
+        $missingDays = 7 - count($visitorData);
+        for ($i = 1; $i < $missingDays; $i++) {
+            $visitorData[] = 0;
+            $visitData[] = 0;
+            $daysOfWeek[] = $hari[Carbon::parse($startDate)->addDays($i)->format('N') - 1];
+        }
+        $missingDays = 7 - count($visitorFaqData);
+        for ($i = 1; $i < $missingDays; $i++) {
+            $visitorFaqData[] = 0;
+            $visitFaqData[] = 0;
+            $daysOfWeekFaq[] = $hari[Carbon::parse($startDate)->addDays($i)->format('N') - 1];
+        }
+
+        // Memasukkan data ke dalam variabel untuk digunakan dalam view
+        return view('seller/views', [
+            'toko' => $toko,
+            'visitor' => json_encode($visitorData),
+            'visit' => json_encode($visitData),
+            'visitorFaq' => json_encode($visitorFaqData),
+            'visitFaq' => json_encode($visitFaqData),
+            'days' => json_encode($daysOfWeek),
+            'daysFaq' => json_encode($daysOfWeekFaq),
+            'totalvisit' => json_encode($totalVisits),
+            'totalvisitor' => json_encode($totalVisitors),
+            'totalvisitfaq' => json_encode($totalVisitsFaq),
+            'totalvisitorfaq' => json_encode($totalVisitorsFaq),
+            // ===============
+            'namatoko' => $namatoko,
+        ]);
     }
     public function ulasan()
     {
         $userId = Auth::id();
         $toko = toko::where('idtoko', $userId)->first();
-        $ulasan = ulasan::where('idtoko', $userId)->get();
+        $ulasan = ulasan::where('idtoko', $userId)->where('faq', '!=', 2)->get();
         return view('seller/ulasan', ['toko' => $toko, 'ulasan' => $ulasan]);
+    }
+    public function upulasan(Request $request)
+    {
+        $id = $request->id;
+        $pesan = "Data ulasan Berhasil di update";
+        switch ($request->up) {
+            case 'faq-1':
+                ulasan::where('id', $id)->update([
+                    'faq' => 0,
+                ]);
+                // echo 'batalkan faq';
+                break;
+            case 'faq-2':
+                ulasan::where('id', $id)->update([
+                    'faq' => 1,
+                ]);
+                // echo 'jadikan faq';
+                break;
+            case 'up':
+                ulasan::where('id', $id)->update([
+                    'jawaban' => $request->jwb,
+                ]);
+                // echo 'update jawaban';
+                break;
+            case 'del':
+                ulasan::where('id', $id)->update([
+                    'faq' => 2,
+                ]);
+                $pesan = "Ulasan berhasil di hapus";
+                // echo 'hapus ulasan';
+                break;
+        }
+        return redirect()->back()->with('success', $pesan);
     }
 }

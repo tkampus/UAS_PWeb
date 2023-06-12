@@ -32,8 +32,8 @@
             <ul class="nav navbar-nav navbar-right scroll-to">
                <li class="active"><a href="#home">Home</a></li>
                <li><a href="../{{$toko->namatoko}}#about">About</a></li>
-               <li><a href="../{{$toko->namatoko}}#contact">Contact</a></li>
                <li><a href="../{{$toko->namatoko}}#produk">Produks</a></li>
+               <li><a href="../{{$toko->namatoko}}#contact">Contact & Ulasan</a></li>
                <li><a href="../faq/{{$toko->namatoko}}">FAQ</a></li>
             </ul>
          </div><!--/.nav-collapse -->
@@ -48,7 +48,7 @@
       </div>
    </div>
    <div class="container section-padding">
-      <div class="table-responsive">
+      <div class="table-responsive" style="padding-top: 20px;">
          <table class="table " id="dataTable" width="100%" cellspacing="0">
             <thead>
                <tr>

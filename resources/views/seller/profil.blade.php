@@ -17,7 +17,7 @@
                <span style="color: red; font-style: italic; font-size: 12px;">{{ $message }}</span>
                @enderror
             </label>
-            <input type="text" name="namatoko" value="{{$toko->namatoko}}{{ old('namatoko') }}" id="">
+            <input type="text" name="namatoko" style="text-transform: capitalize;" value="{{$toko->namatoko}}{{ old('namatoko') }}" id="">
          </div>
          <div class="ipt">
             <label for="">Alamat Toko</label>
@@ -65,7 +65,7 @@
                @enderror
             </label>
             <div class="ipt-file">
-               <label for="fotobg">type file : jpeg,jpg,gif | max:2mb</label>
+               <label for="fotobg">type file : jpeg,jpg,gif | max:5mb</label>
                <input type="file" name="fotobg" id="fotobg" value="{{ old('fotobg') }}">
             </div>
          </div>
@@ -106,7 +106,7 @@
             const file = event.target.files[0]; // Mendapatkan file yang dipilih
 
             // Validasi jenis file dan ukuran
-            if (file.type.includes('image/') && file.size <= 2 * 1024 * 1024) {
+            if (file.type.includes('image/') && file.size <= 5 * 1024 * 1024) {
                fileInput.children[0].innerText = file.name;
                // console.log('Nama File:', file.name);
                // Lakukan tindakan lain di sini, seperti mengirim file ke server

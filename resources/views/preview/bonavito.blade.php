@@ -39,8 +39,8 @@
             <ul class="nav navbar-nav navbar-right scroll-to">
                <li class="active"><a href="#home">Home</a></li>
                <li><a href="#about">About</a></li>
-               <li><a href="#contact">Contact</a></li>
                <li><a href="#produk">Produks</a></li>
+               <li><a href="#contact">Contact & Ulasan</a></li>
                <li><a href="faq/{{$toko->namatoko}}">FAQ</a></li>
             </ul>
          </div><!--/.nav-collapse -->
@@ -140,26 +140,42 @@
 
    <section id="contact" class="section-padding">
       <div class="container">
-         <div class="row col-6 col-md-4">
-            <div class="col-sm-8">
-               <div class="row row col-6 col-md-4 contact-details">
-                  <div class="col-sm-4 margin-bottom30 text-center">
-                     <i class="ion-ios-location-outline"></i>
-                     <h4>{{$toko->alamat}}</h4>
-                  </div>
-                  <div class="col-sm-4 margin-bottom30">
-                     <i class="ion-ios-email-outline"></i>
-                     <h4><a href="{{$toko->shope}}" style="color:white">Shope</a></h4>
-                     <h4><a href="{{$toko->tokopedia}}" style="color:white">Tokopedia</a></h4>
-                  </div>
-                  <div class="col-sm-4 margin-bottom30 text-center">
-                     <i class="ion-ios-telephone-outline"></i>
-                     <h4>{{$toko->notoko}}</h4>
-                  </div>
-               </div><!--contact details-->
+         <div class="col-md-4 contact-details">
+            <div class="row">
+               <div class="col-md-1">
+                  <i class="ion-ios-location-outline"></i>
+               </div>
+               <div class="col-md-8">
+                  <h4>{{$toko->alamat}}</h4>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-1">
+                  <i class="ion-ios-email-outline"></i>
+               </div>
+               <div class="col-md-8">
+                  <h4><a href="{{$toko->shope}}" style="color:white">Shope</a></h4>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-1">
+                  <i class="ion-ios-email-outline"></i>
+               </div>
+               <div class="col-md-8">
+                  <h4><a href="{{$toko->tokopedia}}" style="color:white">Tokopedia</a></h4>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-1">
+                  <i class="ion-ios-telephone-outline"></i>
+               </div>
+               <div class="col-md-8">
+                  <h4>{{$toko->notoko}}</h4>
+               </div>
             </div>
          </div>
-         <div class="row col-6 col-md-8">
+
+         <div class="row col-md-8">
             <div class="col-sm-6" style="width:100%; ">
                <form class="contact-form" method="post" action="{{ route('kirimulasan') }}">
                   @csrf
@@ -192,12 +208,12 @@
                         <p class="help-block"></p>
                      </div>
                   </div>
-                  <div class="row control-group">
+                  <!-- <div class="row control-group">
                      <div class="form-group col-xs-12 controls">
                         <textarea rows="5" class="form-control" name="jawaban" placeholder="Jawaban" id="message" required data-validation-required-message="Please enter a message."></textarea>
                         <p class="help-block"></p>
                      </div>
-                  </div>
+                  </div> -->
                   <br>
                   <div id="success"></div>
                   <div class="row">

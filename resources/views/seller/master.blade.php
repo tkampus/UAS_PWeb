@@ -19,6 +19,7 @@
          </a>
          <a href="/seller/profil">Profil</a>
          <a href="/seller/produk">Produk</a>
+         <a href="" onclick="alert('Menu ini belum tersedia');return false;" class="belum-tersedia">Event</a>
          <a href="/seller/views">View</a>
          <a href="/seller/ulasan">Ulasan</a>
          <?php

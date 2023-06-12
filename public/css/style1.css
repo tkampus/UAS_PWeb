@@ -12,6 +12,11 @@
    z-index: 2;
 }
 
+.belum-tersedia {
+   background-color: rgba(133, 133, 133, 0.26);
+   color: #979797 !important;
+}
+
 .logo {
    width: 70px;
    height: 70px;
@@ -60,10 +65,12 @@
 }
 
 .jdl {
-   margin-top: 80px;
+   margin-top: 100px;
    margin-left: 170px;
    padding: 10px
 }
+
+/*  */
 
 /* main */
 .main {
@@ -172,9 +179,84 @@
 .tabel-ulasan tbody tr,
 .tabel-ulasan thead tr {
    background-color: #f3fcff;
-   border: 1px 0px 1px 0px solid;
-   border-radius: 10px;
 }
+
+.tabel-ulasan th {
+   text-align: center;
+   border: 1px solid #ddd;
+}
+
+.tabel-ulasan textarea {
+   width: 100%;
+   border: 1px solid #ddd;
+   padding: 3px;
+   height: auto;
+   min-height: 50px;
+   resize: none;
+   overflow: hidden;
+}
+
+.tabel-ulasan i {
+   font-size: 30px;
+   font-weight: bold;
+}
+
+.aksi {
+   text-align: center;
+   align-items: center;
+}
+
+.aksi-1,
+.aksi-2,
+.aksi-3 {
+   margin: 3px;
+}
+
+
+.aksi-1 {
+   padding: 0px 15px;
+   background-color: #6ea8fe;
+   border: 1px solid #213cdb;
+   border-radius: 5px;
+}
+
+.aksi-1:hover {
+   background-color: #213cdb;
+   border-color: #6ea8fe;
+   color: white;
+}
+
+.aksi-2 {
+   padding: 0px 15px;
+   background-color: #ffda60;
+   border: 1px solid #ffa421;
+   border-radius: 5px;
+}
+
+.aksi-2:hover {
+   background-color: #ffa421;
+   border-color: #ffda60;
+   color: white;
+}
+
+.aksi-3 {
+   padding: 0px 15px;
+   background-color: #ea8689;
+   border: 1px solid #dc3545;
+   border-radius: 5px;
+}
+
+.aksi-3:hover {
+   background-color: #dc3545;
+   border-color: #ea8689;
+   color: white;
+}
+
+.border-green {
+   border: 1px solid #abff91;
+   background-color: #deffd4;
+}
+
 
 /* login */
 .kotak-login {
@@ -267,7 +349,7 @@
    }
 
    .jdl {
-      margin-top: 105px;
+      margin-top: 120px;
       margin-left: 5px;
    }
 
@@ -278,7 +360,7 @@
       position: fixed;
       padding-top: 0px;
       padding-left: 100px;
-      border-bottom: 2px solid #DFF6FF;
+      border-bottom: 2px solid #a3e5ff;
    }
 
    .main {

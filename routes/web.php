@@ -5,6 +5,7 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\sellerController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\previewController;
+use App\Http\Controllers\api;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ use App\Http\Controllers\previewController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 Route::get('register', [registerController::class, 'register'])->name('register');
 Route::post('actionregister', [registerController::class, 'actionregister'])->name('actionregister');
@@ -41,9 +43,10 @@ Route::post('seller/deleteproduk', [sellerController::class, 'deleteproduk'])->n
 
 Route::get('seller/views', [sellerController::class, 'views'])->name('views')->middleware('auth');
 Route::get('seller/ulasan', [sellerController::class, 'ulasan'])->name('ulasan')->middleware('auth');
+Route::post('seller/upulasan', [sellerController::class, 'upulasan'])->name('upulasan')->middleware('auth');
 
 Route::post('kirimulasan', [previewController::class, 'kirimulasan'])->name('kirimulasan');
 
 // ===========================
-Route::get('faq/{param}', [previewController::class, 'faq'])->name('faq');
-Route::get('/{param}', [previewController::class, 'index'])->name('preview');
+Route::get('faq/{param}', [previewController::class, 'faq'])->name('faq')->middleware('rvisitor');
+Route::get('/{param}', [previewController::class, 'index'])->name('preview')->middleware('rvisitor');

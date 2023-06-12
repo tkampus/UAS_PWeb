@@ -18,23 +18,24 @@
         </div>
         <div class="preview-logo">
             <img src="/img/logo_produku.png" alt="">
-        </div>      
+        </div>
     </div>
     <!--  -->
     <div class="main1 t-tengah">
         <div class="main1-div">
-            <h1>Web Promosi Produku</h1>
+            <h1>Tugas Project Matakuliah</h1>
             <br>
-            <p>Puji syukur kami panjatkan ke hadirat Tuhan Yang Maha Esa. Atas rahmat dan hidayah-Nya, kami bisa menyelesaikan aplikasi web "PRODUKU". Tidak lupa kami mengucapkan terima kasih kepada Ibu Reni Aryani, S.Kom., M.S.I. dan Mutia Fadhila Putri, M.Kom. sebagai posen pengampu matakuliah Rekayasa Perangkat Lunak. kami juga mengucapkan terima kasih kepada teman-teman yang telah berkontribusi dalam pembuatan Aplikasi ini.<br><br>
-                Website produkku adalah website yang dipakai untuk membantu UMKM yang ada di Indonesia, Produkku dibuat dan dikembangkan sebagai tugas projeck matakuliah RPL di UNIVERSITAS JAMBI, kami membuat website Produkku dengan tujuan agar UMKM yang ada di Indonesia bisa dengan mudah dilihat oleh seluruh warga Indonesia. Oleh sebab itu, saran dan kritik senantiasa diharapkan demi perbaikan karya kami. Kami juga berharap semoga karya ilmiah ini mampu memberikan mamfaat kepada UMKM di seluruh Indonesia
+            <p>Puji syukur kami panjatkan ke hadirat Tuhan Yang Maha Esa. Atas rahmat dan hidayah-Nya, kami berhasil menyelesaikan tugas akhir semester dalam bentuk aplikasi web "PRODUKU". Tidak lupa, kami mengucapkan terima kasih kepada Bapak Muhammad Razi A., S.T., MMSI. selaku dosen pengampu matakuliah Pemrograman Web 2 yang telah memberikan bimbingan dan dukungan kepada kami.<br>
+                <br>
+                Website Produkku adalah sebuah platform yang dibuat untuk mendukung UMKM di Indonesia. Dalam tugas proyek mata kuliah ini, kami telah mengembangkan website Produkku dengan tujuan memudahkan UMKM di Indonesia untuk dapat dilihat oleh seluruh warga negara. Kami sangat mengharapkan saran dan kritik yang membangun guna perbaikan karya kami. Dengan harapan, karya ilmiah ini dapat memberikan manfaat bagi UMKM di seluruh Indonesia.
             </p><br>
             <div style="text-align: left; margin: auto; width: fit-content;">
-                <p>Anggota TIM : </p>
-                <li>Ketua Tim: F1E121071 (ANDIKA ROMARIO)</li>
-                <li>Anapsis Sistem: F1E121088 (PUTRI ANGGELLINA KHAIRUNISA)</li>
-                <li>Desainer Sistem: F1E121224 (YOVA ANDRE)</li>
-                <li>Programmer: F1E121094 (MUKTASHIM BILLAH)</li>
-                <li>Sekretaris : F1E121097 (CEPI RAMDAN)</li>
+                <p>Anggota tim kami:</p>
+                <li>F1E121083 - SULFIYANDI</li>
+                <li>F1E121094 - MUKTASHIM BILLAH</li>
+                <li>F1E121095 - AYU INDRYANI</li>
+                <li>F1E121173 - ABDULLAH HANIF</li>
+                <li>F1E121219 - MIKHAEL FELIX PARULIAN SITUMORANG</li>
             </div>
             <br>
             <hr>

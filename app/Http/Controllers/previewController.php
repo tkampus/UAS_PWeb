@@ -19,18 +19,18 @@ class previewController extends Controller
     public function kirimulasan(Request $request)
     {
         ulasan::create([
-            'idtoko' => $request->get('idtoko'), // Isi dengan nilai yang sesuai
-            'email' => $request->get('email'), // Isi dengan nilai yang sesuai
-            'nama' => $request->get('nama'), // Isi dengan nilai yang sesuai
-            'pesan' => $request->get('pesan'), // Isi dengan nilai yang sesuai
-            'jawaban' => $request->get('jawaban'), // Isi dengan nilai yang sesuai
+            'idtoko' => $request->get('idtoko'),
+            'email' => $request->get('email'),
+            'nama' => $request->get('nama'),
+            'pesan' => $request->get('pesan'),
+            'faq' => 0,
         ]);
         return back()->with('success', 'ulasan sukses dikirim');
     }
     public function faq($param)
     {
         $toko = toko::where('namatoko', $param)->first();
-        $faq = ulasan::where('idtoko', $toko->idtoko)->get();
+        $faq = ulasan::where('idtoko', $toko->idtoko)->where('faq', 1)->get();
         return view('preview/bonavitofaq', ['faq' => $faq, 'toko' => $toko]);
     }
 }

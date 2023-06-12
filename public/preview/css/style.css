@@ -10,6 +10,23 @@
     color: #CDDC39;
 }
 
+/* card */
+.shadow {
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58, 59, 69, .15) !important
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+}
+
+#lineChart {
+    height: 100%;
+}
+
+/* end card */
+
 body {
     background: white;
     font-family: 'Open Sans', sans-serif;
@@ -805,6 +822,12 @@ cta
 .contact-details i {
     font-size: 50px;
     color: #fff;
+    padding-right: 20px;
+    min-width: 100px !important;
+}
+
+.contact-details .col-md-1 {
+    min-width: 50px !important;
 }
 
 .contact-details h4 {
@@ -812,6 +835,28 @@ cta
     color: #fff;
     font-weight: 300;
     font-style: italic;
+}
+
+.contact-details {
+
+    padding-top: 30px;
+}
+
+@media (max-width: 992px) {
+    .contact-details {
+        padding: 30px 15px 0;
+        text-align: center;
+    }
+
+    .contact-details .row {
+        display: inline-block;
+        width: 25%;
+        text-align: center;
+    }
+
+    .contact-details i {
+        padding: inherit;
+    }
 }
 
 .contact-form {
